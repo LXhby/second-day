@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+    ol,ul,li{margin:0;padding:0;list-style:none;}
+    img{border:none;vertical-align:top;}
+    body{
+      position: relative;
+    }
+    #wrap{
+      width: 520px;
+      margin: 100px auto;
+      border:1px solid #000;
+    }
+    .bar{
+      position: relative;
+      width: 500px;
+      height: 50px;
+      padding:0 10px;
+      background-color: #000;
+    }
+    h2{
+      float: left;
+      color:#fff;
+      font-size: 18px;
+      line-height: 50px;
+    }
+    #add{
+      position: relative;
+      float: right;
+      width: 3px;
+      height: 18px;
+      margin: 16px 10px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+    #add:after{
+      position: absolute;
+      top: 7.5px;
+      left: -7.5px;
+      width: 18px;
+      height: 3px;
+      background-color: #fff;
+      content: '';
+    }
+    #box{
+      position: absolute;
+      top: 0;
+      left: 478px;
+      display:none;
+     margin-left: 86px;
+      padding-top: 10px;
+      width: 226px;
+      height: 30px;
+    }
+    #demo1{
+      display: inline-block;
+      width: 150px;
+      height: 25px;
+    }
+    #btn{
+      display: inline-block;
+      width: 50px;
+      height:25px ;
+      background-color: #FE9900;
+      color: #fff;
+      box-sizing: content-box;
+    }
+    #demo2{
+      width: 520px;
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 1px dashed #ccc;
+      text-indent: 10px;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+<div id="wrap">
+  <div class="bar">
+    <h2 class="fl">最新动态</h2>
+    <p id="add" class="fr"></p>
+  </div>
+</div>
+<div id="box">
+  <input type="text" id="demo1">
+  <input type="button" id="btn" value="添加">
+</div>
+</body>
+<script>
+  var wrap = document.getElementById("wrap");//定义最外部的盒子
+  var inputValue = document.getElementById("demo1");//定义取值框
+  var btn = document.getElementById("btn");//定义点击按钮
+  var add = document.getElementsByClassName("fr");//定义加号
+  var oBox = document.getElementById("box");//定义包裹取值框和点击按钮=包裹框
+        add[0].onclick = function () {//加号点击后包裹框出现
+        oBox.style.display = "block";
+  };
+
+        btn.onclick = function () {//点击按钮后，给父级加html，同时包裹框消失
+        wrap.innerHTML = wrap.innerHTML + "<p id='demo2'>" + inputValue.value + "</p>";
+        add[0].onclick = function () {//加号点击后包裹框出现
+                oBox.style.display = "block";
+            };
+        inputValue.value = "";
+        oBox.style.display = "none";
+
+  }
+
+</script>
+</html>

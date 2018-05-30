@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;}
+    ol,ul,li{margin:0;padding:0;list-style:none;}
+    img{border:none;vertical-align:top;}
+    #wrap{
+      width: 520px;
+      margin: 100px auto;
+      border:1px solid #000;
+    }
+    .bar{
+      width: 500px;
+      height: 50px;
+      padding:0 10px;
+      background-color: #000;
+    }
+    h2{
+      float: left;
+      color:#fff;
+      font-size: 18px;
+      line-height: 50px;
+    }
+    #add{
+      float: right;
+      color: #fff;
+      font-weight: bold;
+      font-size:26px;
+      cursor: pointer;
+    }
+    #box{
+      display: none;
+      float: left;
+      margin-left: 86px;
+      padding-top: 10px;
+      width: 226px;
+      height: 30px;
+    }
+    #demo1{
+      width: 150px;
+      height: 25px;
+    }
+    #btn{
+      display: inline-block;
+      width: 50px;
+      height:25px ;
+      background-color: #FE9900;
+      color: #fff;
+      box-sizing: content-box;
+    }
+    #list{
+      width: 500px;
+      margin: 0 auto;
+    }
+    #list li{
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 1px dashed #ccc;
+      text-indent: 10px;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+<div id="wrap">
+  <div class="bar">
+    <h2 class="fl">最新动态</h2>
+    <div id="box">
+      <input type="text" id="demo1">
+      <input type="button" id="btn" value="添加">
+    </div>
+    <p id="add">+</p>
+  </div>
+  <ul id="list">
+  </ul>
+  </div>
+</body>
+<script>
+  var add = document.getElementById("add"),
+      box =document.getElementById("box"),
+      btn = document.getElementById("btn"),
+      info = document.getElementById("demo1"),
+      list = document.getElementById("list");
+  add.onclick = function () {
+      box.style.display = "block";
+  }
+  btn.onclick = function () {
+      list.innerHTML += "<li>" +info.value +"</li>";
+      info.value ="";
+      box.style.display = "none";
+  }
+</script>
+</html>
+<!--//行为 样式 结构-->
+<!--出现的问题-->
+<!--1不能改变innerhtml-->
+<!--<div id="box">-->
+  <!--<div id="haha">点击</div>-->
+<!--</div>-->
+<!--<scritp>-->
+  <!--var oBox = document.getElementById("box");-->
+  <!--var oHa = document.getElementById("haha");-->
+  <!--var myText = oHa.innerhtml;//只代表oha的innnerhtml取到的值，和innerhtml没有半毛钱的关系，不会再改变-->
+  <!--oHa.onclick = function(){-->
+    <!--myText += '123';-->
+  <!--}-->
+<!--</scritp>-->
+<!--2为啥只能添加一次 然后方框就消失了-->
+<!--<form action="">-->
+  <!--<input type="text" name="name">-->
+<!--</form>-->
+<!--如果表单提交地址为空，那么以get方式提交到本页面 页面会刷新 刷新就意味着 代码重新执行 只能加一次-->
+<!--3 为什么只能设置一次innerhtml-->
+<!--<div id="box">-->
+  <!--<div id="haha">点击</div>-->
+<!--</div-->
+<!--<scritp>-->
+  <!--var oBox = document.getElementById("box");-->
+  <!--var oHa = document.getElementById("haha");-->
+  <!--oHa.onclick = function(){-->
+    <!--oBox.innerhtml += "123";-->
+  <!--}-->
+<!--</scritp>-->
+<!--这个只能出现一次效果，因为不会出现点击之后不断出现123，因为innnerhtml的拼接会无情覆盖原有innerhtml,然后复制的haha不是原来的haha,绑定的点击事件就无效-->
+<!--4 为什么用getAttribute获取input的value失效-->
+<!--在input当中 set/get Attribute指的是标签的属性，而.value指的是对象的属性，并且.value能够直接展示在输入框中,是和输入框相关。-->
